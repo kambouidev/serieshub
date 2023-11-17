@@ -12,6 +12,9 @@ body {
   background: #242424;
 }
 
+.icon {
+  cursor: pointer;
+}
 /*
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

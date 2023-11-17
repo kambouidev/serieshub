@@ -4,10 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        backgroundColor: '#242424',
         blueColor: '#2a68ff',
         greyIsh: '#f1f4f8',
-        cadShadow: 'f7f8f9',
-        textColor: '#252b36',
       },
     },
   },
