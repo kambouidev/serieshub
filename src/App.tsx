@@ -1,13 +1,35 @@
 import { FC } from 'react'
-import { SHHeader } from './components/SHHeader/SHHeader.component'
-import SHSearchBar from './components/SHSearchBar/SHSearchBar.component'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './pages/Home/Home';
+
+
+const queryClient = new QueryClient()
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    Component: Home,
+  },
+  {
+    path: "show/:id",
+    Component: Home,
+  },
+
+]);
 
 const App: FC = () => {
   return (
-    <div className='w-[85%] m-auto '>
-      <SHHeader />
-      <SHSearchBar />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+
   )
 }
 
