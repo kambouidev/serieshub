@@ -7,8 +7,7 @@ interface SearchShowResponse {
   show: IShow;
 }
 const searchShow = async (query: string): Promise<SearchShowResponse[]> => {
-  console.log('ESTAMOS BOSCANDOOOOO', query);
-  return await get<SearchShowResponse[]>(`${Paths.SEARCH}?q=${query}`, {});
+  return await get<SearchShowResponse[]>(`${Paths.SEARCH}?q=${query}`);
 };
 
 export { searchShow };
