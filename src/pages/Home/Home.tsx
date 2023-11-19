@@ -3,10 +3,13 @@ import { SHHeader } from '../../components/SHHeader/SHHeader.component';
 import SHSearchBar from '../../components/SHSearchBar/SHSearchBar.component';
 import useShowList from './hooks/useShowList';
 import SHShowList from '../../components/SHShowList/SHShowList.component';
+import { useSearchQuery } from './hooks/useSearchShow';
 
 const Home = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [showSearchResult, setShowSearchResult] = useState(false);
     const { changePage, data, isFetching } = useShowList();
-
+    const { onSearchShow, isFetchingSearch, searchResult } = useSearchQuery();
     const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
@@ -29,14 +32,28 @@ const Home = () => {
         });
     };
 
+    const handleSearchQuery = (query: string) => {
+        setSearchQuery(query);
+        if (query.length === 0) setShowSearchResult(false);
+    }
+
+    const search = () => {
+        if (searchQuery.trim().length > 0) {
+            onSearchShow(searchQuery.trim());
+            setShowSearchResult(true);
+        }
+    }
+
     return (
         <div className='w-[85%] m-auto'>
             <SHHeader />
-            <SHSearchBar />
+            <SHSearchBar searchQuery={searchQuery} setSearchQuery={handleSearchQuery} onSearch={search} />
 
             <div className='justify-center'>
-                <div className='p-10 text-center text-greyIsh opacity-40 text-lg sm:text-lg md:text-xl lg:text-3xl'>SHOWS</div>
-                <SHShowList onChangePage={changePage} isLoading={isFetching} shows={data} />
+                <div className='p-10 text-center text-greyIsh opacity-40 text-lg sm:text-lg md:text-xl lg:text-3xl'>{showSearchResult ? "Search result" : "Series"}</div>
+                {!showSearchResult ?
+                    <SHShowList onChangePage={changePage} isLoading={isFetching} shows={data} showPagination={true} /> :
+                    <SHShowList onChangePage={changePage} isLoading={isFetchingSearch} shows={searchResult} showPagination={false} />}
             </div>
 
             {showButton && (

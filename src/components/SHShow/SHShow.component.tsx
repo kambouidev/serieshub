@@ -56,7 +56,7 @@ const SHShow: FC<SHShowProps> = ({ show }) => {
                                 <div className="title font-extrabold text-base mb-2">{name}</div>
                                 <div className="rating mb-1 text-xs font- flex flex-row justify-between items-center">
                                     {premiered && <span className="flex flex-row">{new Date(premiered).getFullYear()}<FaTrophy className="ml-1 text-amber-500" /></span>}
-                                    <span className="flex flex-row">{rating.average}<FaStar className="ml-1 text-amber-500" /></span>
+                                    {rating && rating.average && <span className="flex flex-row">{rating.average}<FaStar className="ml-1 text-amber-500" /></span>}
                                 </div>
                                 <div className="italic text-xs mb-1">{genres.join(', ')}</div>
 

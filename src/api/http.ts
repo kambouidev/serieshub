@@ -7,6 +7,7 @@ enum HttpMethos {
 
 export enum Paths {
   SHOWS = '/show',
+  SEARCH = '/search/shows',
 }
 
 interface CustomOptions {
@@ -87,6 +88,7 @@ async function handleResponse<T>(res: Response): Promise<T> {
   }
 
   return await res.text().then((text) => {
+    console.log('QUE TEXTO ES ESTEEEE', text);
     const data = text && JSON.parse(text);
     return data;
   });

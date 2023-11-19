@@ -8,9 +8,10 @@ type SHShowListProps = {
     shows: IShow[] | undefined;
     isLoading: boolean;
     onChangePage: (page: number) => void;
+    showPagination: boolean;
 };
 
-const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage }) => {
+const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showPagination }) => {
     const arrayNumeros: number[] = Array.from({ length: 250 }, (_, index) => index);
     const [first, setFirst] = useState(0);
     const [pageLinkSize, setPageLinkSize] = useState(0);
@@ -43,7 +44,7 @@ const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage }) => 
 
     return (
         <div>
-            <Paginator
+            {showPagination && <Paginator
                 pageLinkSize={pageLinkSize} // Utiliza el estado para pageLinkSize
                 className='mb-6'
                 first={first}
@@ -51,14 +52,12 @@ const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage }) => 
                 totalRecords={290}
                 onPageChange={onPageChange}
                 pt={Tailwind.paginator}
-            />
+            />}
 
             <div className='flex flex-wrap justify-center'>
                 {isLoading ? (
                     arrayNumeros.map((number) => <SHShow show={undefined} key={number} />)
-                ) : (
-                    shows && shows.map((show) => <SHShow show={show} key={show.id} />)
-                )}
+                ) : (shows && shows.length > 0 ? shows.map((show) => <SHShow show={show} key={show.id} />) : <div className='text-lg text-white'>Series not found</div>)}
             </div>
         </div>
     );
