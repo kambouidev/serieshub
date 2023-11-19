@@ -7,7 +7,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { PrimeReactProvider } from 'primereact/api';
+
 import Home from './pages/Home/Home';
+import ShowPage from './pages/Show/ShowPage';
+
 
 
 const queryClient = new QueryClient()
@@ -19,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path: "show/:id",
-    Component: Home,
+    Component: ShowPage,
   },
 
 ]);
@@ -27,7 +31,10 @@ const router = createBrowserRouter([
 const App: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+
+      <PrimeReactProvider >
+        <RouterProvider router={router} />
+      </PrimeReactProvider>
     </QueryClientProvider>
 
   )

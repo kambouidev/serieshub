@@ -25,7 +25,6 @@ const SHSearchBar = () => {
     };
 
     const handleOptionClick = (option: string) => {
-        console.log('eywaaa', option)
         setSearchQuery(option);
         setShowRecentSearches(false);
     };
