@@ -17,14 +17,10 @@ export function useSearchQuery() {
   const searchResult = data?.map((item) => item.show) ?? [];
 
   useEffect(() => {
-    if (searchQuery !== '') {
+    if (searchQuery.length > 0) {
       refetch();
     }
-  }, [searchQuery, refetch]);
-
-  useEffect(() => {
-    console.error('Error en búsqueda de show: ', errorSearch);
-  }, [errorSearch]);
+  }, [searchQuery]);
 
   return { searchResult, isFetchingSearch, errorSearch, onSearchShow };
 }

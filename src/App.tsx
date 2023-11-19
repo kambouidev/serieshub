@@ -11,6 +11,7 @@ import { PrimeReactProvider } from 'primereact/api';
 
 import Home from './pages/Home/Home';
 import ShowPage from './pages/Show/ShowPage';
+import { Provider } from 'jotai';
 
 
 
@@ -30,12 +31,14 @@ const router = createBrowserRouter([
 
 const App: FC = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Provider>
+      <QueryClientProvider client={queryClient}>
+        <PrimeReactProvider >
+          <RouterProvider router={router} />
+        </PrimeReactProvider>
+      </QueryClientProvider>
+    </Provider>
 
-      <PrimeReactProvider >
-        <RouterProvider router={router} />
-      </PrimeReactProvider>
-    </QueryClientProvider>
 
   )
 }

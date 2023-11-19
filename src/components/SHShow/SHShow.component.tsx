@@ -1,17 +1,22 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import { Link } from "react-router-dom"
 import { IShow } from "../../interfaces/ShowInterface"
 import { FaHeart, FaStar, FaTrophy } from "react-icons/fa";
 import notFound from '../../assets/image_not_found.png';
+import { Toast } from "primereact/toast";
 
 type SHShowProps = {
-    show: IShow | undefined
+    show: IShow | undefined,
+    toggleFavoriteShow: (show: IShow) => void,
+    isFavoriteShow: (id: number) => boolean,
 }
 
-const SHShow: FC<SHShowProps> = ({ show }) => {
-    const [isLoading, setIsLoading] = useState(true)
-    const [favorite, setFavorite] = useState(false)
+
+const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) => {
+    const [isLoading, setIsLoading] = useState(true);
+    const toast = useRef(null);
+
     const cardStyle = "inline-block relative transition-transform rounded-xl overflow-hidden m-1 border border-gray-600 cursor-pointer h-56 w-[125px] sm:w-[160px] sm:h-60 z-0 hover:transform hover:scale-125 hover:z-10 hover:shadow-xl "
 
     useEffect(() => {
@@ -26,12 +31,16 @@ const SHShow: FC<SHShowProps> = ({ show }) => {
         </SkeletonTheme>
     </div>;
     const { name, genres, image, rating, premiered } = show;
-    const heartStyle = favorite ? 'text-red-500 opacity-1' : 'transparent';
-    const handleButtonClick = () => {
-        setFavorite(!favorite)
+    const heartStyle = isFavoriteShow(show.id) ? 'text-red-500 opacity-1' : 'transparent';
+    const toastStyle = "max-w-[300px] text-sm sm:text-base sm:max-w-[400px]";
+
+    const handleButtonClick = (show: IShow) => {
+        toggleFavoriteShow(show)
+        toast.current?.show({ severity: 'success', summary: isFavoriteShow(show.id) ? 'Removed from Favorites' : 'Added to Favorites', life: 1000 });
     };
 
     return <>
+        <Toast ref={toast} position="top-right" className={toastStyle} />
         {
             isLoading
                 ?
@@ -43,7 +52,7 @@ const SHShow: FC<SHShowProps> = ({ show }) => {
                 :
                 <div className={cardStyle}>
                     <div className="absolute top-1 right-1 z-50">
-                        <button className="bg-white opacity-60 hover:opacity-100  p-2 rounded-md" onClick={handleButtonClick}>
+                        <button className="bg-white opacity-60 hover:opacity-100  p-2 rounded-md" onClick={() => handleButtonClick(show)}>
                             <FaHeart className={`text-base ${heartStyle}`} />
                         </button>
                     </div>

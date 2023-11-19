@@ -55,3 +55,5 @@ export interface IShow {
     };
   };
 }
+
+export type FavShow = Pick<IShow, 'id' | 'name'>;

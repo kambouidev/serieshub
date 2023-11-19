@@ -9,9 +9,11 @@ type SHShowListProps = {
     isLoading: boolean;
     onChangePage: (page: number) => void;
     showPagination: boolean;
+    toggleFavoriteShow: (show: IShow) => void,
+    isFavoriteShow: (id: number) => boolean,
 };
 
-const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showPagination }) => {
+const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showPagination, isFavoriteShow, toggleFavoriteShow }) => {
     const arrayNumeros: number[] = Array.from({ length: 250 }, (_, index) => index);
     const [first, setFirst] = useState(0);
     const [pageLinkSize, setPageLinkSize] = useState(0);
@@ -56,8 +58,8 @@ const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showP
 
             <div className='flex flex-wrap justify-center'>
                 {isLoading ? (
-                    arrayNumeros.map((number) => <SHShow show={undefined} key={number} />)
-                ) : (shows && shows.length > 0 ? shows.map((show) => <SHShow show={show} key={show.id} />) : <div className='text-lg text-white'>Series not found</div>)}
+                    arrayNumeros.map((number) => <SHShow show={undefined} key={number} isFavoriteShow={isFavoriteShow} toggleFavoriteShow={toggleFavoriteShow} />)
+                ) : (shows && shows.length > 0 ? shows.map((show) => <SHShow show={show} key={show.id} isFavoriteShow={isFavoriteShow} toggleFavoriteShow={toggleFavoriteShow} />) : <div className='text-lg text-white'>Series not found</div>)}
             </div>
         </div>
     );
