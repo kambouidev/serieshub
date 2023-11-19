@@ -11,14 +11,20 @@ type SHShowListProps = {
     showPagination: boolean;
     toggleFavoriteShow: (show: IShow) => void,
     isFavoriteShow: (id: number) => boolean,
+    lastPage?: number;
 };
 
-const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showPagination, isFavoriteShow, toggleFavoriteShow }) => {
+const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showPagination, isFavoriteShow, toggleFavoriteShow, lastPage }) => {
     const arrayNumeros: number[] = Array.from({ length: 250 }, (_, index) => index);
     const [first, setFirst] = useState(0);
     const [pageLinkSize, setPageLinkSize] = useState(0);
     const breakpoints = [360, 460, 560, 660, 760];
     const pageSizes = [1, 2, 3, 3, 4, 5];
+
+    const onPageChange = (event: { first: number; page: number }) => {
+        setFirst(event.first);
+        onChangePage(event.page);
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -35,14 +41,19 @@ const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showP
             setPageLinkSize(newSize);
         };
         handleResize();
+        if (lastPage) {
+            setFirst((lastPage + 1) * 10)
+
+        }
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const onPageChange = (event: { first: number; page: number }) => {
-        setFirst(event.first);
-        onChangePage(event.page);
-    };
+    useEffect(() => {
+        if (lastPage) onPageChange({ first: lastPage * 10, page: lastPage });
+    }, [lastPage])
+
+
 
     return (
         <div>

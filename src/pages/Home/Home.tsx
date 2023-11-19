@@ -7,6 +7,7 @@ import { useSearchQuery } from './hooks/useSearchShow';
 import { useLastQueries } from '../../store/useLastQueries';
 import { useFavoriteShow } from '../../store/useFavoriteShow';
 import SHFavoriteShow from '../../components/SHFavoriteShow/SHFavoriteShow.component';
+import { useLastPageVisited } from '../../store/useLastPageVisited';
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -14,11 +15,15 @@ const Home = () => {
     const { changePage, data, isFetching } = useShowList();
     const { onSearchShow, isFetchingSearch, searchResult } = useSearchQuery();
     const [showButton, setShowButton] = useState(false);
-    const { addQuery, lastQueries } = useLastQueries();
-    const { favorites, isShowInFavorites, toggleFavoriteShow } = useFavoriteShow();
+    const { addQuery, lastQueries, updateLastQueriesFromStorage } = useLastQueries();
+    const { favorites, isShowInFavorites, toggleFavoriteShow, updateFavoritesFromStorage } = useFavoriteShow();
+    const { lastPage, setPage, updateLastPageFromStorage } = useLastPageVisited();
 
-    console.log('FAVORITOS', favorites)
     useEffect(() => {
+        updateFavoritesFromStorage();
+        updateLastQueriesFromStorage();
+        updateLastPageFromStorage();
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -30,6 +35,11 @@ const Home = () => {
             setShowButton(false);
         }
     };
+
+    const onChangePage = (page: number) => {
+        changePage(page);
+        setPage(page);
+    }
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -61,7 +71,7 @@ const Home = () => {
             <div className='justify-center'>
                 <div className='p-10 text-center text-greyIsh opacity-40 text-lg sm:text-lg md:text-xl lg:text-3xl'>{showSearchResult ? "Search result" : "Series"}</div>
                 {!showSearchResult ?
-                    <SHShowList onChangePage={changePage} isLoading={isFetching} shows={data} showPagination={true} isFavoriteShow={isShowInFavorites} toggleFavoriteShow={toggleFavoriteShow} /> :
+                    <SHShowList onChangePage={onChangePage} isLoading={isFetching} shows={data} showPagination={true} lastPage={lastPage} isFavoriteShow={isShowInFavorites} toggleFavoriteShow={toggleFavoriteShow} /> :
                     <SHShowList onChangePage={changePage} isLoading={isFetchingSearch} shows={searchResult} showPagination={false} isFavoriteShow={isShowInFavorites} toggleFavoriteShow={toggleFavoriteShow} />}
             </div>
 
