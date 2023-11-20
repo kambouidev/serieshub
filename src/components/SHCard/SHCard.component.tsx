@@ -19,7 +19,8 @@ const SHCard: FC<SHCardProps> = ({ data }) => {
         name,
         premiereDate,
         link,
-        episodes } = data
+        episodes
+    } = data
     return (
         <div className="flex flex-row gap-2 mb-2 bg-white bg-opacity-10 rounded-lg" key={id}>
             <div className="w-[150px] flex flex-col justify-center items-center">
@@ -35,7 +36,7 @@ const SHCard: FC<SHCardProps> = ({ data }) => {
                 {link && <div className="text-xs sm:text-lg mx-3">
                     <Link to={`${link} `} >
                         <button className="bg-blueColor p-2 rounded-lg">
-                            Episodies {episodes}
+                            Watch {episodes} episodes
                         </button>
                     </Link>
                 </div>}

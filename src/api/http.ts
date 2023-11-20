@@ -8,6 +8,7 @@ enum HttpMethos {
 export enum Paths {
   SHOWS = '/show',
   SEARCH = '/search/shows',
+  SEASON = '/seasons',
 }
 
 const BASE_URL = 'https://api.tvmaze.com';

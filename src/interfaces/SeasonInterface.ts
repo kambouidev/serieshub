@@ -1,18 +1,16 @@
 import { IShow } from './ShowInterface';
 
 export interface Season {
-  id: 1;
-  number: 1;
-  name: '';
-  episodeOrder: 13;
-  premiereDate: '2013-06-24';
-  endDate: '2013-09-16';
-  webChannel: null;
+  id: number;
+  number: number;
+  name: string;
+  episodeOrder: number;
+  premiereDate: string;
+  endDate: string;
   image: {
-    medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/24/60941.jpg';
-    original: 'https://static.tvmaze.com/uploads/images/original_untouched/24/60941.jpg';
+    medium: string;
+    original: string;
   };
-  summary: '';
 }
 
 export interface IShowWithEmbeddedSeasons extends IShow {
