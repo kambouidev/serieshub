@@ -12,6 +12,8 @@ import { PrimeReactProvider } from 'primereact/api';
 import Home from './pages/Home/Home';
 import ShowPage from './pages/Show/ShowPage';
 import { Provider } from 'jotai';
+import SeasonPage from './pages/Season/Season';
+import SHError from './components/SHError/SHError';
 
 
 
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
   {
     path: "show/:id",
     Component: ShowPage,
+  },
+  {
+    path: "seasons/:id/episodes",
+    Component: SeasonPage,
+  },
+  {
+    path: '*',
+    Component: SHError,
   },
 
 ]);
