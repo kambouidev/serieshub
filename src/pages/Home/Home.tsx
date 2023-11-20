@@ -62,7 +62,7 @@ const Home = () => {
     }
 
     return (
-        <div className='w-[85%] m-auto'>
+        <div className='w-[85%] max-w-[1080px] m-auto'>
             <SHHeader />
             <SHFavoriteShow shows={favorites} />
 

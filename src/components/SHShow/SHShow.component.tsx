@@ -17,7 +17,7 @@ const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) =
     const [isLoading, setIsLoading] = useState(true);
     const toast = useRef(null);
 
-    const cardStyle = "inline-block relative transition-transform rounded-xl overflow-hidden m-1 border border-gray-600 cursor-pointer h-56 w-[125px] sm:w-[160px] sm:h-60 z-0 hover:transform hover:scale-125 hover:z-10 hover:shadow-xl "
+    const cardStyle = "inline-block relative transition-transform rounded-xl overflow-hidden m-1 border border-gray-600 cursor-pointer h-48 w-[125px] sm:w-[160px] sm:h-60 z-0 hover:transform hover:scale-125 hover:z-10 hover:shadow-xl "
 
     useEffect(() => {
         setTimeout(() => {
@@ -30,7 +30,7 @@ const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) =
             <Skeleton height={300} duration={2} />
         </SkeletonTheme>
     </div>;
-    const { name, genres, image, rating, premiered } = show;
+    const { name, genres, image, rating, premiered, id } = show;
     const heartStyle = isFavoriteShow(show.id) ? 'text-red-500 opacity-1' : 'transparent';
     const toastStyle = "max-w-[300px] text-sm sm:text-base sm:max-w-[400px]";
 
@@ -57,10 +57,10 @@ const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) =
                         </button>
                     </div>
 
-                    <Link to={`/show/5`} style={{ textDecoration: "none", color: "white" }}>
+                    <Link to={`/show/${id}`} style={{ textDecoration: "none", color: "white" }}>
                         <div >
 
-                            {image && <img className="h-60" src={image.original || image.medium || notFound} />}
+                            {image && <img src={image.original || image.medium || notFound} />}
                             <div className="infoShow absolute p-4 h-[100%] bottom-0 flex flex-col justify-end bg-gradient-to-t from-black to-transparent w-[100%]">
                                 <div className="title font-extrabold text-base mb-2">{name}</div>
                                 <div className="rating mb-1 text-xs font- flex flex-row justify-between items-center">
