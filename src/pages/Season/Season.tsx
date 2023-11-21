@@ -8,6 +8,7 @@ import { useSeasonEpisodes } from "./hooks/useSeason";
 import { ISeasonWithEmbeddedEpisodes } from "../../interfaces/EpisodeInterface";
 import SHEpisodeCard from "../../components/SHEpisodeCard/SHEpisodeCard";
 import SHError from "../../components/SHError/SHError";
+import TimeZoneSelector from "../../components/SHTimeZoneSelector/SHTimeZoneSelector";
 
 const SeasonPage = () => {
     const { data, isFetching, onSearchSeason } = useSeasonEpisodes();
@@ -51,6 +52,7 @@ const SeasonPage = () => {
                     </div>
                 </div>
                 <div>
+                    <TimeZoneSelector />
                     <div className='p-10 text-center text-greyIsh opacity-40 text-lg sm:text-lg md:text-xl lg:text-3xl '>Episodes</div>
                     {episodesData.map((episode) => <SHEpisodeCard key={episode.id} data={episode} />)}
 

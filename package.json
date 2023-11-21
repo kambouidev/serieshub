@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.8.4",
     "jotai": "^2.5.1",
+    "moment-timezone": "^0.5.43",
     "primeicons": "^6.0.1",
     "primereact": "^10.0.9",
     "react": "^18.2.0",
