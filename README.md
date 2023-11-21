@@ -1,7 +1,3 @@
-Certainly! Here's an updated README incorporating the bonus features:
-
----
-
 # SeriesHUB 📺🎬
 
 SeriesHub is a web application built with React and Vite that enables users to access detailed information about TV shows, seasons, and episodes using the TVMaze API.
