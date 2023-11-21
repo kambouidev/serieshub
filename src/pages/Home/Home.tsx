@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SHHeader } from '../../components/SHHeader/SHHeader.component';
 import SHSearchBar from '../../components/SHSearchBar/SHSearchBar.component';
 import useShowList from './hooks/useShowList';

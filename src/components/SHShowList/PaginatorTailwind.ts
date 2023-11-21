@@ -1,5 +1,10 @@
 import { classNames } from 'primereact/utils';
 
+interface PaginatorContext {
+  disabled: boolean;
+  active: boolean;
+}
+
 export const Tailwind = {
   paginator: {
     root: {
@@ -9,7 +14,7 @@ export const Tailwind = {
         'dark:bg-backgroundColor dark:text-white/60 dark:border-blue-900/40' // Dark Mode
       ),
     },
-    firstpagebutton: ({ context }) => ({
+    firstpagebutton: ({ context }: { context: PaginatorContext }) => ({
       className: classNames(
         'relative inline-flex items-center justify-center user-none overflow-hidden leading-none',
         'border-0 text-gray-500  min-w-[3rem] h-12 rounded-md',
@@ -22,7 +27,7 @@ export const Tailwind = {
         }
       ),
     }),
-    previouspagebutton: ({ context }) => ({
+    previouspagebutton: ({ context }: { context: PaginatorContext }) => ({
       className: classNames(
         'relative inline-flex items-center justify-center user-none overflow-hidden leading-none',
         'border-0 text-gray-500 min-w-[3rem] h-12 rounded-md',
@@ -35,7 +40,7 @@ export const Tailwind = {
         }
       ),
     }),
-    nextpagebutton: ({ context }) => ({
+    nextpagebutton: ({ context }: { context: PaginatorContext }) => ({
       className: classNames(
         'relative inline-flex items-center justify-center user-none overflow-hidden leading-none',
         'border-0 text-gray-500 min-w-[3rem] h-12 rounded-md',
@@ -48,7 +53,7 @@ export const Tailwind = {
         }
       ),
     }),
-    lastpagebutton: ({ context }) => ({
+    lastpagebutton: ({ context }: { context: PaginatorContext }) => ({
       className: classNames(
         'relative inline-flex items-center justify-center user-none overflow-hidden leading-none',
         'border-0 text-gray-500 min-w-[3rem] h-12 rounded-md',
@@ -61,7 +66,7 @@ export const Tailwind = {
         }
       ),
     }),
-    pagebutton: ({ context }) => ({
+    pagebutton: ({ context }: { context: PaginatorContext }) => ({
       className: classNames(
         'relative inline-flex items-center justify-center user-none overflow-hidden leading-none',
         'border-0 text-gray-500 min-w-[3rem] h-12 m-[0.143rem] rounded-md',

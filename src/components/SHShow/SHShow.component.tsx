@@ -25,7 +25,7 @@ type SHShowProps = {
 
 const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) => {
     const [isLoading, setIsLoading] = useState(true);
-    const toast = useRef(null);
+    const toast = useRef<Toast>(null);
 
     const cardStyle = "inline-block relative transition-transform rounded-xl overflow-hidden m-1 border border-gray-600 cursor-pointer h-48 w-[125px] sm:w-[160px] sm:h-60 z-0 hover:transform hover:scale-125 hover:z-10 hover:shadow-xl "
 
@@ -45,7 +45,7 @@ const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) =
     const toastStyle = "max-w-[300px] text-sm sm:text-base sm:max-w-[400px]";
 
     const handleButtonClick = (show: IShow) => {
-        toggleFavoriteShow(show)
+        toggleFavoriteShow(show);
         toast.current?.show({ severity: 'success', summary: isFavoriteShow(show.id) ? 'Removed from Favorites' : 'Added to Favorites', life: 1000 });
     };
 
