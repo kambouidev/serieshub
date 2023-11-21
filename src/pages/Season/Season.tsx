@@ -10,6 +10,10 @@ import SHEpisodeCard from "../../components/SHEpisodeCard/SHEpisodeCard";
 import SHError from "../../components/SHError/SHError";
 import TimeZoneSelector from "../../components/SHTimeZoneSelector/SHTimeZoneSelector";
 
+/**
+ * Component to display information about a specific season and its episodes.
+ * @returns {JSX.Element} JSX for the SeasonPage component.
+ */
 const SeasonPage = () => {
     const { data, isFetching, onSearchSeason } = useSeasonEpisodes();
     const { id } = useParams();
@@ -22,6 +26,11 @@ const SeasonPage = () => {
 
     if (isNaN(seasonId)) return <SHError />;
 
+    /**
+     * Render component based on the fetched data for the season and its episodes.
+     * @param {ISeasonWithEmbeddedEpisodes} dataComponent - Data related to the season and its episodes.
+     * @returns {JSX.Element} JSX for displaying the season information and episodes.
+     */
     const renderComponent = (dataComponent: ISeasonWithEmbeddedEpisodes) => {
         const { image, name, episodeOrder, number, premiereDate, _embedded } = dataComponent;
         const episodesData = _embedded.episodes.map(({ id, image: imageEpisode, name, number, airstamp, summary }) => (
@@ -38,6 +47,7 @@ const SeasonPage = () => {
         return (
             <div className="gap-2">
                 <div className="flex flex-row justify-center bg-white bg-opacity-10 rounded-lg">
+                    {/* Display season information */}
                     <div className="flex flex-row  p-2  max-w-[300px] ">
                         <div className="w-1/2 flex flex-col justify-center items-center">
                             <img src={image ? image.medium || image.original : no_image} alt={name} className="rounded-md" />
@@ -51,11 +61,14 @@ const SeasonPage = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Display timezone selector */}
                 <div>
                     <TimeZoneSelector />
+
+                    {/* Display episodes */}
                     <div className='p-10 text-center text-greyIsh opacity-40 text-lg sm:text-lg md:text-xl lg:text-3xl '>Episodes</div>
                     {episodesData.map((episode) => <SHEpisodeCard key={episode.id} data={episode} />)}
-
                 </div>
             </div>
         )
@@ -66,7 +79,8 @@ const SeasonPage = () => {
             <SHHeader />
             {isFetching && <SHLoading />}
             {data && renderComponent(data)}
-        </div >)
+        </div >
+    )
 }
 
 export default SeasonPage;

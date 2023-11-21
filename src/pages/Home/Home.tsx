@@ -9,6 +9,10 @@ import { useFavoriteShow } from '../../store/useFavoriteShow';
 import SHFavoriteShow from '../../components/SHFavoriteShow/SHFavoriteShow.component';
 import { useLastPageVisited } from '../../store/useLastPageVisited';
 
+/**
+ * Home component representing the main page of the application.
+ * Manages state for search, favorites, last queries, and pagination of TV shows.
+ */
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showSearchResult, setShowSearchResult] = useState(false);

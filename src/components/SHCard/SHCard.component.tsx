@@ -1,6 +1,16 @@
 import { FC } from 'react'
 import { FaTrophy } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+
+/**
+ * @typedef {Object} SHCardInfo - Information for SHCard component.
+ * @property {number} id - Unique identifier.
+ * @property {string} image - URL of the image.
+ * @property {string} name - Name/title of the card.
+ * @property {string} [link] - Optional link for redirection.
+ * @property {string} [premiereDate] - Premiere date of the content.
+ * @property {number} [episodes] - Number of episodes.
+ */
 type SHCardInfo = {
     id: number;
     image: string;
@@ -10,9 +20,20 @@ type SHCardInfo = {
     episodes?: number;
 }
 
+/**
+ * @typedef {Object} SHCardProps - Props for SHCard component.
+ * @property {SHCardInfo} data - Data to be displayed on the card.
+ */
 type SHCardProps = {
     data: SHCardInfo
 }
+
+/**
+ * Represents a card component displaying show information.
+ * @param {SHCardProps} props - The properties for the SHCard component.
+ * @returns {JSX.Element} - The JSX for the SHCard component.
+ */
+
 const SHCard: FC<SHCardProps> = ({ data }) => {
     const { id,
         image,

@@ -2,12 +2,26 @@ import { atom, useAtom } from 'jotai';
 import { FavShow } from '../interfaces/ShowInterface';
 import useStorage from '../hooks/useStorage';
 
+/** Atom to manage favorite shows state. */
 const favoriteShows = atom<FavShow[]>([]);
 
+/**
+ * Custom hook to manage favorite shows.
+ * @returns {{
+ *   toggleFavoriteShow: (show: FavShow) => void,
+ *   isShowInFavorites: (id: number) => boolean,
+ *   updateFavoritesFromStorage: () => void,
+ *   favorites: FavShow[]
+ * }}
+ */
 export function useFavoriteShow() {
   const [favorites, setFavorites] = useAtom(favoriteShows);
   const { getData, storeData } = useStorage();
 
+  /**
+   * Toggles a show as a favorite.
+   * @param {FavShow} show - The show to toggle as a favorite.
+   */
   const toggleFavoriteShow = (show: FavShow) => {
     const showIndex = favorites.findIndex((s) => s.id === show.id);
     let updatedFavorites: FavShow[];
@@ -24,10 +38,18 @@ export function useFavoriteShow() {
     storeData([{ itemKey: 'SERIES_HUB_FAVORITES', itemValue: storeFavs }]);
   };
 
+  /**
+   * Checks if a show is in the list of favorites.
+   * @param {number} id - The ID of the show to check.
+   * @returns {boolean} - Indicates if the show is in favorites.
+   */
   const isShowInFavorites = (id: number) => {
     return favorites.some((show) => show.id === id);
   };
 
+  /**
+   * Updates the list of favorites from storage.
+   */
   const updateFavoritesFromStorage = () => {
     const favorites = getData('SERIES_HUB_FAVORITES');
 
@@ -42,7 +64,7 @@ export function useFavoriteShow() {
 
         setFavorites(favoritesFromStorage);
       } catch (error) {
-        console.error('Error al convertir los favoritos:', error);
+        console.error('Error converting favorites:', error);
       }
     }
   };

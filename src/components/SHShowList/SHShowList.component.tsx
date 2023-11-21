@@ -4,15 +4,30 @@ import SHShow from '../SHShow/SHShow.component';
 import { Paginator } from 'primereact/paginator';
 import { Tailwind } from './PaginatorTailwind';
 
+/**
+ * Props for the SHShowList component.
+ */
 type SHShowListProps = {
     shows: IShow[] | undefined;
     isLoading: boolean;
     onChangePage: (page: number) => void;
     showPagination: boolean;
-    toggleFavoriteShow: (show: IShow) => void,
-    isFavoriteShow: (id: number) => boolean,
+    toggleFavoriteShow: (show: IShow) => void;
+    isFavoriteShow: (id: number) => boolean;
     lastPage?: number;
 };
+
+/**
+ * Component to display a list of TV shows with pagination support.
+ * @param {SHShowListProps} shows - The array of TV shows to display.
+ * @param {SHShowListProps} isLoading - Boolean indicating whether the shows are still loading.
+ * @param {SHShowListProps} onChangePage - Function to handle page change.
+ * @param {SHShowListProps} showPagination - Boolean indicating whether to display pagination.
+ * @param {SHShowListProps} toggleFavoriteShow - Function to toggle favorite status of a show.
+ * @param {SHShowListProps} isFavoriteShow - Function to check if a show is marked as a favorite.
+ * @param {SHShowListProps} lastPage - Optional number representing the last page.
+ * @returns {JSX.Element} JSX for displaying the list of TV shows.
+ */
 
 const SHShowList: FC<SHShowListProps> = ({ shows, isLoading, onChangePage, showPagination, isFavoriteShow, toggleFavoriteShow, lastPage }) => {
     const arrayNumeros: number[] = Array.from({ length: 250 }, (_, index) => index);

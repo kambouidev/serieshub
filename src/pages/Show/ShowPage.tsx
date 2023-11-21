@@ -9,6 +9,11 @@ import SHCard from "../../components/SHCard/SHCard.component";
 import SHLoading from "../../components/SHLoading/SHLoading";
 import SHError from "../../components/SHError/SHError";
 
+
+/**
+ * Represents a page displaying show details and seasons.
+ * @returns {JSX.Element} - The JSX for the ShowPage component.
+ */
 const ShowPage = () => {
     const { data, isFetching, onSearchShow } = useShowSeasons();
     const { id } = useParams();

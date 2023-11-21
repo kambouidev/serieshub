@@ -1,12 +1,26 @@
 import { atom, useAtom } from 'jotai';
 import useStorage from '../hooks/useStorage';
 
+/** Atom to manage the last queries state. */
 const lastQueriesAtom = atom<string[]>([]);
 
+/**
+ * Custom hook to manage the last queries.
+ * @returns {{
+ *   lastQueries: string[],
+ *   addQuery: (newQuery: string) => void,
+ *   updateLastQueriesFromStorage: () => void
+ * }}
+ */
 export function useLastQueries() {
   const [lastQueries, setLastQueries] = useAtom(lastQueriesAtom);
   const { getData, storeData } = useStorage();
 
+  /**
+   * Adds a new query to the last queries list.
+   * Limits the list to 5 unique queries.
+   * @param {string} newQuery - The new query to add.
+   */
   const addQuery = (newQuery: string) => {
     if (!lastQueries.includes(newQuery)) {
       const updatedQueries = [newQuery, ...lastQueries];
@@ -18,6 +32,9 @@ export function useLastQueries() {
     }
   };
 
+  /**
+   * Updates the last queries from storage.
+   */
   const updateLastQueriesFromStorage = () => {
     const queries = getData('SERIES_HUB_LAST_QUERIES');
 
@@ -31,7 +48,7 @@ export function useLastQueries() {
 
         setLastQueries(queriesFromStorage);
       } catch (error) {
-        console.error('Error al convertir las queries:', error);
+        console.error('Error converting queries:', error);
       }
     }
   };

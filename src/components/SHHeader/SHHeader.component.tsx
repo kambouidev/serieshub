@@ -1,4 +1,7 @@
-
+/**
+ * Component for the header of the application.
+ * @returns {JSX.Element} JSX for the header component.
+ */
 const SHHeader = () => {
     return (
         <div className="navBar flex justify-between items-center py-[1rem]">
@@ -6,7 +9,7 @@ const SHHeader = () => {
                 <h1 className="logo text-[25px] text-blue-50">series<strong className="text-blueColor">HUB</strong></h1>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export { SHHeader }
+export { SHHeader };

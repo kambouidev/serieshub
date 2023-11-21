@@ -2,6 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { searchSeasonByIdWithEmbedEpisodes } from '../../../api/SearchSeason';
 
+/**
+ * Hook to fetch season data and episodes information.
+ * @returns {Object} - Object containing data, fetching state, error, and function to search for a season.
+ */
 export function useSeasonEpisodes() {
   const [seasonId, setSeasonId] = useState<number | null>(null);
   const { data, isFetching, error, refetch } = useQuery({

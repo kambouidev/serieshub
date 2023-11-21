@@ -6,12 +6,22 @@ import { FaHeart, FaStar, FaTrophy } from "react-icons/fa";
 import notFound from '../../assets/image_not_found.png';
 import { Toast } from "primereact/toast";
 
+/**
+ * Props for the SHShow component.
+ */
 type SHShowProps = {
     show: IShow | undefined,
     toggleFavoriteShow: (show: IShow) => void,
     isFavoriteShow: (id: number) => boolean,
 }
 
+/**
+ * Component to display information about a TV show.
+ * @param {SHShowProps} show - Information about the show.
+ * @param {SHShowProps} toggleFavoriteShow - Function to toggle favorite status of the show.
+ * @param {SHShowProps} isFavoriteShow - Function to check if the show is marked as a favorite.
+ * @returns {JSX.Element} JSX for the TV show component.
+ */
 
 const SHShow: FC<SHShowProps> = ({ show, toggleFavoriteShow, isFavoriteShow }) => {
     const [isLoading, setIsLoading] = useState(true);

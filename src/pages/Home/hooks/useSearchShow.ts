@@ -2,6 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { searchShow } from '../../../api/SearchShowApi';
 
+/**
+ * Custom hook for managing TV show search state.
+ * @returns {object} Object containing search results, fetch status, errors, and search function.
+ */
 export function useSearchQuery() {
   const [searchQuery, setSearchQuery] = useState('');
   const { data, isFetching: isFetchingSearch, error: errorSearch, refetch } = useQuery({

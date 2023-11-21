@@ -3,6 +3,11 @@ import { useTimeZoneStore } from '../../store/useTimeZone';
 import { Dropdown } from 'primereact/dropdown';
 import { TbCalendarTime } from 'react-icons/tb';
 
+/**
+ * Component for selecting a time zone.
+ * @returns {JSX.Element} JSX for the time zone selector.
+ */
+
 const TimeZoneSelector = () => {
     const timeZoneList = moment.tz.names();
     const { timeZone, setTimeZone } = useTimeZoneStore();

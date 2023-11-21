@@ -2,10 +2,18 @@ import { FC } from 'react';
 import { FavShow } from '../../interfaces/ShowInterface';
 import { Link } from 'react-router-dom';
 
+/**
+ * Props for the SHFavoriteShow component.
+ */
 type SHFavoriteShowProps = {
-    shows: FavShow[]
+    shows: FavShow[];
 };
 
+/**
+ * Component to display favorite shows as links.
+ * @param {SHFavoriteShowProps} shows - An array of favorite shows.
+ * @returns {JSX.Element} JSX for displaying favorite shows as links.
+ */
 const SHFavoriteShow: FC<SHFavoriteShowProps> = ({ shows }) => {
     return shows.length === 0 ?
         <></> :
@@ -20,8 +28,7 @@ const SHFavoriteShow: FC<SHFavoriteShowProps> = ({ shows }) => {
                         </Link>)}
                 </div>
             </div>
+        );
+};
 
-        )
-}
-
-export default SHFavoriteShow
+export default SHFavoriteShow;

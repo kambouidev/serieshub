@@ -1,12 +1,24 @@
 import { useState, FC } from 'react';
-//import { debounce } from 'lodash';
 
+/**
+ * Props for the SHSearchBar component.
+ */
 type SHSearchBarProps = {
     searchQuery: string,
     setSearchQuery: (query: string) => void,
     onSearch: () => void,
     lastQueries: string[]
 }
+
+/**
+ * Component for the search bar used for searching series.
+ * @param {SHSearchBarProps} searchQuery - The current search query.
+ * @param {SHSearchBarProps} setSearchQuery - Function to set the search query.
+ * @param {SHSearchBarProps} onSearch - Function to trigger search action.
+ * @param {SHSearchBarProps} lastQueries - Array of recent search queries.
+ * @returns {JSX.Element} JSX for the search bar component.
+ */
+
 const SHSearchBar: FC<SHSearchBarProps> = ({ searchQuery, setSearchQuery, onSearch, lastQueries }) => {
     const [filteredRecentSearches, setFilteredRecentSearches] = useState<string[]>([]);
     const [showRecentSearches, setShowRecentSearches] = useState(false);

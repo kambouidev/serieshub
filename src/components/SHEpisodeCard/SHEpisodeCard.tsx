@@ -1,7 +1,10 @@
-import { FC } from 'react'
-import { TbCalendarTime } from "react-icons/tb";
+import { FC } from 'react';
+import { TbCalendarTime } from 'react-icons/tb';
 import useTimeZone from '../../hooks/useTimeZone';
 
+/**
+ * Interface defining the structure of episode information.
+ */
 type SHEpisodeCardInfo = {
     id: number;
     image: string;
@@ -11,9 +14,18 @@ type SHEpisodeCardInfo = {
     number: number;
 }
 
+/**
+ * Props for the SHEpisodeCard component.
+ */
 type SHEpisodeCardProps = {
-    data: SHEpisodeCardInfo
+    data: SHEpisodeCardInfo;
 }
+
+/**
+ * Component to display information about a specific TV episode.
+ * @param {SHEpisodeCardProps} data - The data containing episode information.
+ * @returns {JSX.Element} JSX for the episode card component.
+ */
 const SHEpisodeCard: FC<SHEpisodeCardProps> = ({ data }) => {
     const { image, name, number, airstamp, summary } = data;
     const { dateFormat } = useTimeZone();
@@ -36,8 +48,7 @@ const SHEpisodeCard: FC<SHEpisodeCardProps> = ({ data }) => {
                 {summary}
             </div>}
         </div>
-
-    )
+    );
 }
 
-export default SHEpisodeCard
+export default SHEpisodeCard;
